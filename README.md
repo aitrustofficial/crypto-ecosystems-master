@@ -1,9 +1,6 @@
 
-**V1.2 UPDATE [2024]:** Read about the Crypto Ecosystems taxonomy's update to Version 1.2 [here](https://github.com/electric-capital/crypto-ecosystems/releases/tag/1.2).
-
 # Crypto Ecosystems
 
-[MIT license with attribution](https://github.com/electric-capital/crypto-ecosystems/blob/master/LICENSE)
 
 🌲 Crypto Ecosystems is a taxonomy for sharing data around open source blockchain, Web3, cryptocurrency, and decentralized ecosystems and tying them to GitHub organizations and code repositories. All of the ecosystems are specified in [TOML](https://github.com/toml-lang/toml) configuration files.
 
@@ -80,7 +77,7 @@ Sample request language: "If you’re working in open source crypto, submit your
 
 Data Source: [Electric Capital Crypto Ecosystems Mapping](https://github.com/electric-capital/crypto-ecosystems)
 
-If you’re working in open source crypto, submit your repository [here](https://github.com/electric-capital/crypto-ecosystems) to be counted.
+If you’re working in open source crypto, submit your repository to be counted.
 
 ## How to Contribute (Step-by-Step Guide)
 
