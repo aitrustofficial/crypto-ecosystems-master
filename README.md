@@ -1,110 +1,265 @@
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-# Crypto Arbitrage - a node.js script to help find and act on arbitrage opportunities. 
-A cryptocurrency arbitrage opportunity calculator and trading bot. Over 800 currencies and 50 markets.
-
-To use, go to https://manu354.github.io/cryptocurrency-arbitrage/ (this link no longer links to the old site, download from github to use the tool) , for development install nodejs ^V8.00 and run `npm install` in the folder where the script `main.js` is. To run the program write `node main` or `npm start`. To change market settings, and to add your own markets edit the `settings.js` file.
-
-## Notice: 
-I am now only focusing on the trading bot. Unfortunately I am going to keep that code private, and will not have time to work on this public version. Feel free to still make pull requests - I will still take a look at any issues when they pop up.
-
-## Short term **roadmap** 
-
-**Hopefully all done within a month, faster with some help :)**
-
-* **V1.0.0** ~~core server code - logs the results to the terminal. No bot functionailty. No frontend.~~
-* **v1.1.0** - ~~create api endpoints and display data on a minimal front end.~~
-* **v1.2.0** - ~~host server and implement websockets.~~
-* **v1.3.0** - ~~add the top 10 most popular cc markets manually.~~ [bugs](https://github.com/manu354/arbitrage/wiki/bugs-v1.3.0)
-* **v1.4.0** - ~~make the frontend actually look like something, not just display the raw data~~
-* Current: **v1.5.0** - ~~let users disable specific markets and coins.~~ ~~TODO: addRemoveAll() and search through list~~
-* **V1.5.1** - peg BTC to USD for each exchange
-* **V1.5.2** - more info tab: show maximum volume (maybe?) and highest bid / lowest ask for each opportunity
-* **V1.5.3** - design a movile view for the frontend
-* **V1.5.4** - don't show / warn about disabled coins on exchanges
-* **v1.5.5** - implement fees into the final profit
-* **v1.6.0** - add graphs with history of arbitrage opportunities for every coin. 
-* **v1.7.0** - account login/signup functionialty with passport to allow users to add their own markets.
-* **v2.0.0** - Implement a trading bot for atleast 2 markets.
-
-**...** 
-
-## How it works
-
-In short it collects JSON from multipile different cryptocurrency markets, and goes through the results and finds the highest and lowest price for each coin. For example if the results look like this for LTC:
-```javascript
-ltc : {
-  'bittrex' : 38.23,
-  'jubi' : 39.78,
-  'chbtc' : 51.8,
-}
-```
-the script will find the the highest price (chbtc.com), lowest price (bittrex), and divide the two: 51.8/38.23 = ~1.35 (~35% profit margin) and then pushes these results to the browser. It will also find the next highest market pairs, e.g. chbtc / jubi is the second highest pair and chbtc/bittrex the third, jubi/bittrex the fourth and so on until every possible combination has been computed.
+# Crypto Ecosystems
 
 
+🌲 Crypto Ecosystems is a taxonomy for sharing data around open source blockchain, Web3, cryptocurrency, and decentralized ecosystems and tying them to GitHub organizations and code repositories. All of the ecosystems are specified in [TOML](https://github.com/toml-lang/toml) configuration files.
 
-### For more details go to the [wiki](https://github.com/manu354/arbitrage/wiki/How-the-script-works) (In progress) or look at the code :)
+This repository is not complete, and hopefully it never is as there are new ecosystems and repositories created every day.
 
+## How to Contribute
 
-## Getting Started
+There's a couple of ways you can help grow this initiative.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+### Option 1: Opening a Pull Request
 
-### Prerequisites
+You can make any .toml file for an ecosystem under the `/data/ecosystems` directory or edit an existing one to help improve data around an ecosystem.
 
-Required: Node.js **^ V8.0.0** this program uses ES7 features such as async/await and requires a newer version of node.
+You can fork this repository and open a PR from the forked repo to this repo. If you are not sure how to do that, you can follow the tutorial [in this video](https://www.loom.com/share/f23aab8c675940a9998b228ea1e179b7).
 
-### Installing
+#### Data Format
 
-In a terminal write the following:
+An example configuration file for the Bitcoin ecosystem looks like this:
 
-CD into the correct folder.
+```toml
+# Ecosystem Level Information
+title = "Bitcoin"
 
-```shell
-cd arbitrage
+# Sub Ecosystems
+# These are the titles of other ecosystems in different .toml files in the /data/ecosystems directory
+sub_ecosystems = [ "Lightning", "RSK Smart Bitcoin", "ZeroNet"]
+
+# GitHub Organizations
+# This is a list of links to associated GitHub organizations.
+github_organizations = ["https://github.com/bitcoin", "https://github.com/bitcoin-core", "https://github.com/bitcoinj", "https://github.com/btcsuite", "https://github.com/libbitcoin", "https://github.com/rust-bitcoin"]
+
+# Repositories
+# These are structs including a url and tags for a git repository. These URLs do not necessarily have to be on GitHub.
+
+[[repo]]
+url = "https://github.com/bitcoin/bitcoin"
+tags = [ "Protocol"]
+
+[[repo]]
+url = "https://github.com/bitcoinbook/bitcoinbook"
+tags = [ "Documentation"]
+
+[[repo]]
+url = "https://github.com/bitcoin-wallet/bitcoin-wallet"
+tags = [ "Wallet"]
+
 ```
 
-Install the required npm modules
+By specifying the data as evolving config files in git, we benefit from a long term, auditable database that is both human and machine readable.
 
-```shell
-npm install
+### Option 2: Complete the Ecosystem Submission form
+
+If you are not a developer or you find making a commit too difficult, you can use this Airtable based alternative below.
+
+You can [visit the form here](https://airtable.com/shrN4vZMlBLm3Dap8), fill it, submit it and we'll take care of the rest :)
+
+## How to Give Attribution For Usage of the Electric Capital Crypto Ecosystems
+
+To use the Electric Capital Crypto Ecosystems Map, you will need an attribution.
+
+Attribution needs to have 3 components:
+
+1. Source: “Electric Capital Crypto Ecosystems Mapping”
+2. Link: https://github.com/electric-capital/crypto-ecosystems
+3. Logo: [Link to logo](static/electric_capital_logo_transparent.png)
+
+Optional:
+Everyone in the crypto ecosystem benefits from additions to this repository.
+It is a help to everyone to include an ask to contribute next to your attribution.
+
+Sample request language: "If you’re working in open source crypto, submit your repository here to be counted."
+
+<ins>Sample attribution</ins>
+
+Data Source: [Electric Capital Crypto Ecosystems Mapping](https://github.com/electric-capital/crypto-ecosystems)
+
+If you’re working in open source crypto, submit your repository to be counted.
+
+## How to Contribute (Step-by-Step Guide)
+
+There are three types of contributions you can make to this data set:
+
+1. Adding a new ecosystem (e.g. a new layer 1 blockchain)
+2. Adding a new sub-ecosystem (e.g. a big organisation that has multiple repos within the above ecosystem)
+3. Adding a new repo (e.g. an individual project within the ecosystem/sub-ecosystem) or organization
+
+This may sound confusing. It is perhaps even more confusing because whilst there are these different data sources/structures, all of them sit within one directory (data/ecosystems) as `.toml` files.
+
+To make things easier, we've made the following roadmap for you to follow depending on which of the above 3 types of contributions you're trying to make. 
+
+### Option 1: Adding a new ecosystem (e.g. blockchain)
+
+If you're adding a totally new ecosystem that has no parents (e.g. Cosmos/Ethereum), then follow this path. You're most likely adding a new L1 blockchain, so let's take the fictitious example of a new chain called `EasyA Chain`. Follow these steps:
+
+1. Go to the `data/ecosystems` directory
+2. Find the folder named the first letter of the ecosystem you're adding. Here, it's the letter `E` because our L1 is called `EasyA Chain`.
+3. Open the folder
+4. Inside the folder, create a new `.toml` file named after your L1 in kebab-case. Here, it will be called `easya-chain.toml`. The full path will now be `data/ecosystems/e/easya-chain.toml`.
+5. Add the following 2 required fields:
+
+```toml
+# Required field number 1: Name of the ecosystem
+title = "EasyA Chain"
+
+# Required field number 2: List of associated GitHub organizations
+github_organizations = ["https://github.com/EasyA-Tech"]
+```
+6. Make your PR! ✅
+
+Remember that this is a hierarchy. If you're adding a Cosmos appchain, therefore, you should be following Option 2 below (since it will be a sub-ecosystem of Cosmos).
+
+Please note: As a time saving measure, you **do not** need to add all the repos within your GitHub organizations to the `.toml` file as individual repos, because our system automatically fetches all repos within the organization.  These will be reflected in our periodic exports of our internal database of repos.
+
+We will explain below when and why you should add repos to an ecosystem.
+
+### Option 2: Adding a new sub-ecosystem
+
+If you're adding a new sub-ecosystem (in other words, it has a parent, like a blockchain or a layer 0), then follow these steps. Again, we'll be using the fictitious `EasyA Chain` L1 blockchain as an example. However, this time, we'll be adding the new `EasyA Community Wallet` sub-ecosystem to it.
+
+1. Go to the `data/ecosystems` directory
+2. Find the folder named the first letter of the name of the ecosystem which the project you're adding is part of. Here, it's the letter `E` because our L1 is called `EasyA Chain`.
+3. Open the folder. Here, it's the `E` folder.
+4. Inside the folder, find the `.toml` file that has the ecosystem's name. Here, following our `EasyA Chain` example, it will be `easya-chain.toml`. The full path to the ecosystem will be `data/ecosystems/e/easya-chain.toml`.
+5. Open this file. Inside the ecosystem file, you will see something that looks like this:
+
+```toml
+title = "EasyA Chain"
+
+github_organizations = ["https://github.com/EasyA-Tech"]
+```
+6. You will then need to do one of two things.
+
+    1. If there are no sub-ecosystems yet, add your sub-ecosystem by adding the following line:
+
+    ```toml
+    sub_ecosystems = ["EasyA Community Wallet"]
+    ```
+
+    2. If you see a line starting with `sub_ecosystems` already, then simple add your sub-ecosystem to the list:
+
+    ```toml
+    sub_ecosystems = ["Pre-existing Sub-Ecosystem", "EasyA Community Wallet"]
+    ```
+Overall, your file should then look something like this:
+
+```toml
+title = "EasyA Chain"
+
+sub_ecosystems = ["EasyA Community Wallet"] # This is the line we changed
+
+github_organizations = ["https://github.com/EasyA-Tech"]
 ```
 
-To run the program
+7. Once you've added your sub-ecosystem's name to the parent ecosystem file, go back to the `data/ecosystems` directory.
+8. This time, find the folder that is the first letter of the name of the sub-ecosystem you're adding. Here, it also happens to be the letter `E` because our sub-ecosystem is called `EasyA Community Wallet`.
+9. Open the folder. Here, it's the `E` folder.
+10. Inside the folder, create the `.toml` file that has the sub-ecosystem's name. Here, following our `EasyA Community Wallet` example, it will be `easya-community-wallet.toml`. The full path to the ecosystem will be `data/ecosystems/e/easya-community-wallet.toml`.
+11. Add the following 2 required fields:
 
-```shell
-npm start
+```toml
+# Required field number 1: Name of the sub-ecosystem
+title = "EasyA Community Wallet"
+
+# Required field number 2: List of associated GitHub organizations
+github_organizations = ["https://github.com/EasyA-Community-Wallet"]
+```
+12. Make your PR! ✅
+
+If you prefer videos, you can also see the above steps done live [here](https://www.loom.com/share/f23aab8c675940a9998b228ea1e179b7).
+
+If you've been following along closely, you'll have noticed that the steps after adding the sub-ecosystem to the parent ecosystem are exactly the same a Option 1 (adding a totally new ecosystem that has no parents). That's because this taxonomy is based on ancestry. Any sub-ecosystem is basically just an ecosystem in its own right (it's not like a sub-ecosystem is any less valuable). The ecosystem and sub-ecosystem dichotomy is merely there so we can see the relationship between different ecosystems. You can keep adding sub-ecosystems to sub-ecosystems ad infinitum (forever).
+
+
+### Option 3: Adding a new repo or organization
+
+The system automatically pulls in all repos listed under a GitHub organization within an ecosystem. For example, when the system sees the below ecosystem, it will automatically account for all the repos under the `EasyA-Tech` GitHub organization.
+
+```toml
+title = "EasyA Chain"
+
+github_organizations = ["https://github.com/EasyA-Tech"]
+```
+So don't worry! You don't need to add every single repo if it's already part of an organization that's in the data set.
+
+To add a new organization, simply append its full GitHub URL to the list of organizations in the associated ecosystem. Let's take the example of adding an organization with the URL `https://github.com/EasyA-Community` as part of the `EasyA Chain` ecosystem. 
+
+You would follow these steps:
+
+1. Go to the `data/ecosystems` directory
+2. Find the folder named the first letter of the name of the ecosystem which the organization you're adding is part of. Here, it's the letter `E` because our ecosystem is called `EasyA Chain`.
+3. Open the folder. Here, it's the `E` folder.
+4. Inside the folder, find the `.toml` file that has the ecosystem's name. Here, following our `EasyA Chain` example, it will be `easya-chain.toml`. The full path to the ecosystem will be `data/ecosystems/e/easya-chain.toml`.
+5. Open this file. Inside the ecosystem file, you will see something that looks like this:
+
+```toml
+title = "EasyA Chain"
+
+github_organizations = ["https://github.com/EasyA-Tech"]
+```
+6. Simply add your GitHub organization URL to the list. Here, ours is `https://github.com/EasyA-Community` so we'll add that: 
+
+```toml
+title = "EasyA Chain"
+
+github_organizations = ["https://github.com/EasyA-Tech", "https://github.com/EasyA-Community"]
+```
+7. Make your PR! ✅
+
+When, then, should you add repos? You only need to add a repo directly to an ecosystem if:
+
+1. ✅ It is not owned by a GitHub organization already listed in an ecosystem file (those `.toml` files) 
+2. ✅ It is not itself an ecosystem/sub-ecosystem (in which case you'd be adding it as an ecosystem)
+
+The types of projects that will commonly get added as individual repos are: 
+- Documentation
+- Wallets
+- Utility Libraries
+- Smaller protocols
+
+Usually these will be repos created by the community (so not already accounted for under the ecosystem/sub-ecosystem GitHub organization). Use that as a rough heuristic here. If the repo you're adding is actually one of many repos all in the same ecosystem, and in fact the organization only contributes to that one ecosystem, then you should almost certainly be adding your organization instead.
+
+If you're happy that you should be adding this repo, then here's how to do it. Let's take the example of a community contributor with the GitHub handle `Platonicsocrates` who's created a helper library for the `EasyA Chain` but also contributes to other projects (so we shouldn't add their whole organization/profile). Their repo URL `https://github.com/platonicsocrates/easya-helpers`. 
+
+You would follow these steps to add it:
+
+1. Go to the `data/ecosystems` directory
+2. Find the folder named the first letter of the name of the ecosystem which the repo you're adding is part of. Here, it's the letter `E` because our ecosystem is called `EasyA Chain`.
+3. Open the folder. Here, it's the `E` folder.
+4. Inside the folder, find the `.toml` file that has the ecosystem's name. Here, following our `EasyA Chain` example, it will be `easya-chain.toml`. The full path to the ecosystem will be `data/ecosystems/e/easya-chain.toml`.
+5. Open this file. Inside the ecosystem file, you will see something that looks like this:
+
+```toml
+title = "EasyA Chain"
+
+github_organizations = ["https://github.com/EasyA-Tech"]
+```
+6. Simply add the following three lines at the end of the `.toml` file:
+
+```toml
+[[repo]]
+url = "https://github.com/platonicsocrates/easya-helpers" # Replace this URL with your repo url
+tags = [ "Library"] # This line is optional
 ```
 
-Go to ```localhost:3000``` to see a minimal display of the raw data
+If there are already other repos in the ecosystem, just add the above as new lines (unlike adding organizations or sub-ecosystems, these aren't lists). For example, if the ecosystem already has a repo, we will just add it below as follows:
 
-## Adding and removing markets - [wiki](https://github.com/manu354/arbitrage/wiki/How-to-add-a-market)
+```toml
 
-Currently you will have to add a market object with the correct settings in the array `markets`, situated in the `settings.js` file. I am updating the project every day and this will change soon.  (Will be able to add a market from the frontend soon)
+# Repo that's already been added
+[[repo]]
+url = "https://github.com/platonicsocrates/easya-js"
+tags = [ "Library"] 
 
-You can temporarily stop loading a market from the frontend, or remove the market by deleting the object in `settings.js`
+# Our new repo
+[[repo]]
+url = "https://github.com/platonicsocrates/easya-helpers" # Replace this URL with your repo url
+tags = [ "Library"] # This line is optional
+```
+7. Make your PR! ✅
 
-For more information see the [wiki](https://github.com/manu354/arbitrage/wiki/How-to-add-a-market) on adding markets.
 
-## Built and deployed with
-
-* [Node.JS](https://nodejs.org) - For the backend
-* [Azure](http://ccarbitrage.azurewebsites.net/) - hosts the backend (directly from this github repo)
-* [Github Pages](https://manu354.github.io/cryptocurrency-arbitrage/) - hosts the beautiful frontend :) (gets data from hosted node instance on azure)
-
-## Contributing
-
-Feel free to suggest edits / pull requests or email me at manummasson8@gmail.com
-
-## Authors
-
-* **Manu Masson** - *Initial work* 
-
-## License
-
-See the [LICENSE.md](LICENSE.md) file for details
-
-## Donating
-
-BTC: 1DpMyyPoBSVNZqhM6d4k1TdYun1XpXaeMo
-LTC: LVXCvcV52unCdcqvyvKp6mC6AAVur1EZ57
+Thank you for contributing and for reading the contribution guide! ❤️
